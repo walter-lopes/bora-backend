@@ -1,0 +1,28 @@
+{
+  "name": "bora-api",
+  "version": "1.0.0",
+  "description": "API's to BORA Project ",
+  "main": "index.js",
+  "scripts": {
+    "start": "node ./bin/server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/walter-lopes/bora-backend.git"
+  },
+  "author": "Walter Vinicius",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/walter-lopes/bora-backend/issues"
+  },
+  "homepage": "https://github.com/walter-lopes/bora-backend#readme",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "express": "^4.16.4",
+    "mongoose": "^5.4.13"
+  },
+  "devDependencies": {
+    "express-swagger-generator": "^1.1.11",
+    "nodemon": "^1.18.10"
+  }
+}

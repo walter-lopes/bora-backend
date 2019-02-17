@@ -1,0 +1,1 @@
+module.exports = { connectionString : 'mongodb://admin:bora123@ds042698.mlab.com:42698/boradb' }
