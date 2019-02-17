@@ -3,22 +3,21 @@
 
 const express = require('express');
 const router = express.Router();
-
+const controller = require('../controllers/user-controller');
 
 /**
  * This function comment is parsed by doctrine
- * @route GET /api
- * @group foo - Operations about user
- * @param {string} email.query.required - username or email - eg: user@domain
+ * @route POST /users
+ * @group users - Operations about user
+ * @param {Point.model} point.body.required - the new point
+ * @param {string} firstname.query.required - user's firstname
+ * @param {string} lastname.query.required - user's lastname
+ * @param {string} nickname.query.required - user's nickname
+ * @param {string} email.query.required - user's email - eg: user@domain
  * @param {string} password.query.required - user's password.
  * @returns {object} 200 - An array of user info
  * @returns {Error}  default - Unexpected error
  */
-router.get('/', (req, res, next) => {
-    res.status(200).send({
-        title: "Bora API",
-        version: "0.0.1"
-    });
-});
+router.post('/', controller.post);
 
 module.exports = router;

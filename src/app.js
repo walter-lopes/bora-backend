@@ -8,6 +8,14 @@ const config = require('./config');
 const app = express();
 const router = express.Router();
 
+
+app.use(bodyParser.json({
+    limit: '5mb'
+}));
+app.use(bodyParser.urlencoded({
+    extended: false
+}));
+
 const expressSwagger = require('express-swagger-generator')(app);
 
 
@@ -44,17 +52,16 @@ expressSwagger(options)
 mongoose.connect(config.connectionString);
 
 // Load models
+const User = require('./models/user');
+
 
 const indexRoute = require('./routes/index-route');
+const userRoute = require('./routes/user-route');
+
 app.use('/', indexRoute);
+app.use('/v1/users/', userRoute);
 
 
-app.use(bodyParser.json({
-    limit: '5mb'
-}));
-app.use(bodyParser.urlencoded({
-    extended: false
-}));
 
 app.use(function (req, res, next) {
     res.header('Access-Control-Allow-Origin', '*');
