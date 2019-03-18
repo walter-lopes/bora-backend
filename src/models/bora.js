@@ -26,4 +26,4 @@ const schema = new Schema({
     }] 
 });
 
-module.exports = mongoose.model('User', schema);
+module.exports = mongoose.model('Bora', schema);
