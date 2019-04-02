@@ -6,3 +6,7 @@ exports.create = async(data) => {
     var bora = new Bora(data);
     await bora.save();
 }
+
+exports.includeParticipants = async(data) => {
+    
+}

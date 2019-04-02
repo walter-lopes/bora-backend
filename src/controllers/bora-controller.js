@@ -16,7 +16,7 @@ exports.post = async(req, res, next) => {
 
 exports.include = async(req, res, next) => {
     try {
-        await repository.update(req.body);
+        await repository.includeParticipants(req.body);
 
         res.status(200).send({
             message: 'Participante incluido no BORA com sucesso.'
