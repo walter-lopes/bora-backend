@@ -16,7 +16,7 @@ exports.post = async(req, res, next) => {
 
 exports.include = async(req, res, next) => {
     try {
-        await repository.includeParticipants(req.body);
+        await repository.includeParticipants(req.params.id, req.body);
 
         res.status(200).send({
             message: 'Participante incluido no BORA com sucesso.'
@@ -25,3 +25,15 @@ exports.include = async(req, res, next) => {
         res.status(500).send({ message: 'Falha ao processar sua requisição.' + error });
     }
 } 
+
+exports.get = async(req, res, next) => {
+    try {
+        boras = await repository.get();
+
+        res.status(200).send({
+            data = boras
+        });
+    } catch (error) {
+        res.status(500).send({ message: 'Falha ao processar sua requisição' + error });
+    }
+}

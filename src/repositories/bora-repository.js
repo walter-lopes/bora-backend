@@ -7,6 +7,15 @@ exports.create = async(data) => {
     await bora.save();
 }
 
-exports.includeParticipants = async(data) => {
-    
+exports.includeParticipants = async(id, data) => {
+    await Bora.findByIdAndUpdate(id, {
+        $set: {
+            participants: data.participants
+        }
+    });
+}
+
+exports.get = async() => {
+    var boras = await Bora.find();
+    return boras;
 }
