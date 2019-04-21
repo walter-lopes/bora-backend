@@ -1,6 +1,7 @@
 'use strict';
 
 const mongoose = require('mongoose');
+const Address = require('./address');
 const Schema = mongoose.Schema;
 
 const schema = new Schema({
@@ -20,10 +21,7 @@ const schema = new Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: 'user' 
     }],
-    location: [{
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'address' 
-    }] 
+    location: Address.schema
 });
 
 module.exports = mongoose.model('Bora', schema);

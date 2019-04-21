@@ -1,19 +1,28 @@
 'use-strict'
 const repository = require('../repositories/bora-repository');
 const authService = require('../services/auth-service');
-
+const Address = require('../models/address');
 exports.post = async(req, res, next) => {
     try {
-        const token = req.body.token || req.headers['Bearer']
+        var token = req.body.token || req.query.token || req.headers.authorization;
 
-        const data = authService.decodeToken(token);
+        token = token.substring(7, token.length);
 
-        await repository.create(
-           title = req.body.title,
-           description = req.body.description,
-           owner = data.id,
-           location = req.body.address
-        );
+        const data = await authService.decodeToken(token);
+
+  
+       
+
+        await repository.create({
+           title: req.body.title,
+           description: req.body.description,
+           owner: data.id,
+           location: {
+            street: req.body.address.street,
+            number: req.body.address.number,
+            zipCode: req.body.address.zipcode,
+           }
+        });
 
         res.status(201).send({ 
             message : 'BORA registrado com sucesso!' 
@@ -41,7 +50,7 @@ exports.get = async(req, res, next) => {
         boras = await repository.get();
 
         res.status(200).send({
-            data = boras
+            data : boras
         });
     } catch (error) {
         res.status(500).send({ message: 'Falha ao processar sua requisição' + error });

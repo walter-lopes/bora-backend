@@ -19,5 +19,6 @@ const controller = require('../controllers/user-controller');
  * @returns {Error}  default - Unexpected error
  */
 router.post('/', controller.post);
+router.post('/authenticate', controller.authenticate);
 
 module.exports = router;

@@ -53,13 +53,16 @@ mongoose.connect(config.connectionString);
 
 // Load models
 const User = require('./models/user');
-
+const Bora = require('./models/bora');
+const Address = require('./models/address')
 
 const indexRoute = require('./routes/index-route');
 const userRoute = require('./routes/user-route');
+const boraRoute = require('./routes/bora-route');
 
 app.use('/', indexRoute);
 app.use('/v1/users/', userRoute);
+app.use('/v1/boras', boraRoute);
 
 
 

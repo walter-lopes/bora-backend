@@ -5,13 +5,15 @@ exports.generateToken = async (data) => {
     return jwt.sign(data, global.SALT_KEY, { expiresIn: '1d' });
 }
 
-exports.decodeToken = async () => {
+exports.decodeToken = async (token) => {
     var data = await jwt.verify(token, global.SALT_KEY);
     return data;
 }
 
 exports.authorize = function (req, res, next) {
-    var token = req.body || req.query.token || req.header['Bearer'];
+    var token = req.body.token || req.query.token || req.headers.authorization;
+
+    token = token.substring(7, token.length);
 
     if(!token) {
         res.status(401).json({ message: 'Acesso Restrito' });
