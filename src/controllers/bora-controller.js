@@ -1,9 +1,19 @@
 'use-strict'
 const repository = require('../repositories/bora-repository');
+const authService = require('../services/auth-service');
 
 exports.post = async(req, res, next) => {
     try {
-        await repository.create(req.body);
+        const token = req.body.token || req.headers['Bearer']
+
+        const data = authService.decodeToken(token);
+
+        await repository.create(
+           title = req.body.title,
+           description = req.body.description,
+           owner = data.id,
+           location = req.body.address
+        );
 
         res.status(201).send({ 
             message : 'BORA registrado com sucesso!' 
